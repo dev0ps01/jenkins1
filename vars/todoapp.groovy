@@ -1,8 +1,21 @@
-def call (String COMPONENT)
-{
+ def call (Map params =  [:] ) {
+    def args = [
+           NEXUS_IP         : '172.31.9.137',
+    ]
+    args << params
+
     pipeline {
 
-        agent any
+        agent {
+
+            label "${args.SLAVE_LABEL}"
+        }
+        environment {
+            COMPONENT    = "${args.COMPONENT}"
+            NEXUS_IP     = "${args.NEXUS_IP}"
+            PROJECT_NAME = "${args.PROJECT_NAME}"
+            SLAVE_LABEL  = "${args.SLAVE_LABEL}"
+        }
 
         stages {
             stage ('prepare artifact') {
@@ -18,11 +31,11 @@ def call (String COMPONENT)
             stage ('upload artifact') {
                 steps {
                     sh '''
-           curl -f -v -u admin:vamsi --upload-file frontend.zip http://172.31.9.137:8081/repository/frontend1/frontend.zip
+                      curl -f -v -u admin:vamsi --upload-file frontend.zip http://${NEXUS_IP}:8081/repository/frontend1/frontend.zip
 
-          '''
+                    '''
                 }
             }
         }
     }
-}
+ }
