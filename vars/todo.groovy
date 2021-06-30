@@ -50,7 +50,7 @@ def call (Map params =  [:] )
             }
             stage ('prepare artifact for nodejs') {
                 when {
-                    environment name: 'APP_TYPE', value: 'GOLANG'
+                    environment name: 'APP_TYPE', value: 'NODEJS'
                 }
                 steps {
 
@@ -60,15 +60,15 @@ def call (Map params =  [:] )
                     '''
                 }
             }
-            stage ('prepare artifact') {
+            stage ('prepare artifact go lang') {
                 when {
-                    environment name: 'APP_TYPE', value: 'NGINX'
+                    environment name: 'APP_TYPE', value: 'GOLANG'
                 }
                 steps {
 
                     sh '''
 
-                      zip -r  ../login.zip * login-ci main.go user.go tracing.go
+                      zip -r  ../${COMPONENT}.zip * login-ci main.go user.go tracing.go
                     '''
                 }
             }
