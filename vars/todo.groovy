@@ -1,4 +1,5 @@
-def call (Map params =  [:] ) {
+def call (Map params =  [:] )
+{
     def args = [
             NEXUS_IP         : '172.31.9.137',
     ]
@@ -18,14 +19,44 @@ def call (Map params =  [:] ) {
         }
 
         stages {
-            stage ('prepare artifact') {
+            stage ('prepare artifact for nginx') {
+               when {
+                   environment name: 'APP_TYPE', value: 'NGINX'
+               }
                 steps {
 
                     sh '''
 
-                        echo ${COMPONENT}
-                       zip -r ./frontend.zip * node_modules dist
+                       echo ${COMPONENT}
+                       zip -r ./${COMPONENT}.zip * node_modules dist
                     '''
+                }
+            }
+            stage ('make compile') {
+                steps {
+                    sh '''
+                       mvn compile
+                    '''
+                }
+            }
+            stage (' make package') {
+                steps {
+                    sh '''
+                     mvn package
+                '''
+
+                }
+            }
+            stage ('prepare artifact for nodejs') {
+                when {
+                    environment name: 'APP_TYPE', value: 'NODEJS'
+                }
+                steps {
+
+                    sh '''
+
+                    cp target/*.jar users.jar && zip -r  ../${COMPONENT}.zip * users.jar
+                '''
                 }
             }
             stage ('upload artifact') {
