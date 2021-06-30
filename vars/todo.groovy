@@ -48,7 +48,7 @@ def call (Map params =  [:] )
 
                 }
             }
-            stage ('prepare artifact for nodejs') {
+            stage ('prepare artifact for java') {
                 when {
                     environment name: 'APP_TYPE', value: 'JAVA'
                 }
@@ -79,7 +79,7 @@ def call (Map params =  [:] )
                     '''
                 }
             }
-            stage ('prepare artifact') {
+            stage ('prepare artifact for nodejs') {
                 when {
                     environment name: 'APP_TYPE', value: 'NODEJS'
                 }
