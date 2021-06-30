@@ -56,7 +56,7 @@ def call (Map params =  [:] )
 
                     sh '''
 
-                       cp target/*.jar users.jar && zip -r  ../${COMPONENT}.zip * users.jar
+                       cp target/*.jar ${COMPONENT}.jar && zip -r  ../${COMPONENT}.zip * ${COMPONENT}.jar
                     '''
                 }
             }
@@ -87,7 +87,7 @@ def call (Map params =  [:] )
 
                     sh '''
 
-                       zip -r  ../todo.zip * node_modules server.js
+                       zip -r  ../${COMPONENT}.zip * node_modules server.js
                     '''
                 }
             }
