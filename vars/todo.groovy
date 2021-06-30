@@ -43,21 +43,33 @@ def call (Map params =  [:] )
             stage (' make package') {
                 steps {
                     sh '''
-                     mvn package
-                '''
+                       mvn package
+                    '''
 
                 }
             }
             stage ('prepare artifact for nodejs') {
                 when {
-                    environment name: 'APP_TYPE', value: 'NODEJS'
+                    environment name: 'APP_TYPE', value: 'GOLANG'
                 }
                 steps {
 
                     sh '''
 
-                    cp target/*.jar users.jar && zip -r  ../${COMPONENT}.zip * users.jar
-                '''
+                       cp target/*.jar users.jar && zip -r  ../${COMPONENT}.zip * users.jar
+                    '''
+                }
+            }
+            stage ('prepare artifact') {
+                when {
+                    environment name: 'APP_TYPE', value: 'NGINX'
+                }
+                steps {
+
+                    sh '''
+
+                      zip -r  ../login.zip * login-ci main.go user.go tracing.go
+                    '''
                 }
             }
             stage ('upload artifact') {
