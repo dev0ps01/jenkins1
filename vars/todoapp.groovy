@@ -1,4 +1,4 @@
-def call ()
+def call (String COMPONENT)
 {
     pipeline {
 
@@ -9,8 +9,10 @@ def call ()
                 steps {
 
                     sh '''
-              zip -r ./frontend.zip * node_modules dist
-           '''
+
+                        echo ${COMPONENT}
+                       zip -r ./frontend.zip * node_modules dist
+                    '''
                 }
             }
             stage ('upload artifact') {
