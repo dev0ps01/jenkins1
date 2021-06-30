@@ -50,7 +50,7 @@ def call (Map params =  [:] )
             }
             stage ('prepare artifact for nodejs') {
                 when {
-                    environment name: 'APP_TYPE', value: 'NODEJS'
+                    environment name: 'APP_TYPE', value: 'JAVA'
                 }
                 steps {
 
@@ -69,6 +69,25 @@ def call (Map params =  [:] )
                     sh '''
 
                       zip -r  ../${COMPONENT}.zip * login-ci main.go user.go tracing.go
+                    '''
+                }
+            }
+            stage (' download dependices') {
+                steps {
+                    sh '''
+                       npm install
+                    '''
+                }
+            }
+            stage ('prepare artifact') {
+                when {
+                    environment name: 'APP_TYPE', value: 'NODEJS'
+                }
+                steps {
+
+                    sh '''
+
+                       zip -r  ../todo.zip * node_modules server.js
                     '''
                 }
             }
