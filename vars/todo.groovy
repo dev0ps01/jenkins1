@@ -41,10 +41,11 @@ def call (Map params =  [:] )
             }
             stage ('upload artifact') {
                 steps {
-                    sh '''
-                      curl -f -v -u admin:vamsi --upload-file frontend.zip http://${NEXUS_IP}:8081/repository/frontend1/frontend.zip
+                    script {
+                        prepare = new nexus()
+                        prepare.nexus(component)
+                    }
 
-                    '''
                 }
             }
     }
