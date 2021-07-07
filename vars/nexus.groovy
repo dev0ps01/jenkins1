@@ -11,12 +11,12 @@ def artifacts(APP_TYPE,COMPONENT) {
     println("abc${get_branch_exec}abc")
     def FILENAME=COMPONENT+'-'+get_branch_exec+'.zip'
     if(APP_TYPE == "NGINX" ) {
-        command = " zip -r ${FILENAME} ."
+        command = " zip -r ${FILENAME} . "
         def execute= sh(returnStdout: true, script: command)
         print execute
     }
     else if(APP_TYPE == "NODEJS" ) {
-        command = "zip -r ${FILENAME} node_modules server.js"
+        command = "zip -r ${FILENAME} . "
         def execute= sh(returnStdout: true, script: command)
         print execute
 
