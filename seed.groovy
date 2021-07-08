@@ -57,7 +57,7 @@ pipelineJob("Deployment Pipeline") {
                     }
                 }
             }
-            'scriptPath'('Jenkinsfile-Deployment')
+            'scriptPath'('Jenkinsfile')
             'lightweight'(true)
         }
     }
