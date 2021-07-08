@@ -4,6 +4,7 @@ def nexus (COMPONENT) {
     def FILENAME=COMPONENT+'-'+get_branch_exec+'.zip'
     command = "curl -f -v -u admin:vamsi --upload-file ${FILENAME} http://172.31.9.137:8081/repository/${COMPONENT}/${FILENAME}"
     def execute_state=sh(returnStdout: true , script: command)
+    manager.addShortText("deployed")
 }
 def artifacts(APP_TYPE,COMPONENT) {
     get_branch = "env | grep GIT_BRANCH | awk -F / '{print \$NF}' | xargs echo -n"
