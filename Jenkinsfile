@@ -34,7 +34,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/dev0ps01/ansible.git'
                 sh '''
 
-                    ansible-playbook -i inv todoapp.yml -t ${COMPONENT} -e COMPONENT=${COMPONENT} -e ENV=${ENV} -e APP_VERSION=${VERSION} -e ansible_password=${UBUNTU_SSH_PASSWRD}
+                    ansible-playbook -i inv todoapp.yml -t ${COMPONENT} -e COMPONENT=${COMPONENT} -e ENV=${ENV} -e APP_VERSION=${VERSION} -e ansible_password=${UBUNTU_SSH_PASSWORD}
                 '''
             }
         }
