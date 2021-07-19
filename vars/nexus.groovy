@@ -51,7 +51,7 @@ def code(APP_TYPE,COMPONENT) {
         print execute
     }
     else if(APP_TYPE == "NGINX") {
-        command = "npm install && npm run build"
+        command = "sudo npm install && sudo npm run build"
         def execute = sh(returnStdout: true, script: command)
         print execute
     }
