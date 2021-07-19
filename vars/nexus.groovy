@@ -46,7 +46,7 @@ def code(APP_TYPE,COMPONENT) {
         print execute
     }
     else if(APP_TYPE == 'JAVA') {
-        command = "sudo mvn clean package"
+        command = "mvn clean package"
         def execute = sh(returnStdout: true, script: command)
         print execute
     }
