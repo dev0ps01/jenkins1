@@ -3,11 +3,11 @@ def nexus(COMPONENT) {
     def get_branch_exec=sh(returnStdout: true, script: get_branch)
     def FILENAME=COMPONENT+'-'+get_branch_exec+'.zip'
 
-    command = "curl -f -v -u admin:vamsi --upload-file ${FILENAME} http://172.31.9.137:8081/repository/${COMPONENT}/${FILENAME}"
+    command = "curl -f -v -u admin:vamsi --upload-file ${FILENAME} http://172.31.3.38:8081/repository/${COMPONENT}/${FILENAME}"
     def execute_state=sh(returnStdout: true, script: command)
 }
 
-def make_artifacts(APP_TYPE, COMPONENT) {
+def artifacts(APP_TYPE, COMPONENT) {
     get_branch = "env | grep GIT_BRANCH | awk -F / '{print \$NF}' | xargs echo -n"
     def get_branch_exec=sh(returnStdout: true, script: get_branch)
     println("abc${get_branch_exec}abc")
@@ -31,7 +31,7 @@ def make_artifacts(APP_TYPE, COMPONENT) {
     }
 }
 
-def code_build(APP_TYPE, COMPONENT) {
+def code(APP_TYPE, COMPONENT) {
     if(APP_TYPE == "NODEJS") {
         command = "npm install"
         def execute=sh(returnStdout: true, script: command)
