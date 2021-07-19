@@ -37,7 +37,7 @@ def code(APP_TYPE, COMPONENT) {
         def execute=sh(returnStdout: true, script: command)
         print execute
     } else if(APP_TYPE == "JAVA") {
-        command = "mvn clean package"
+        command = " sudo mvn clean package"
         def execute=sh(returnStdout: true, script: command)
         print execute
     } else if(APP_TYPE == "GOLANG") {
