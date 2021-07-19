@@ -22,9 +22,9 @@ def artifacts(APP_TYPE,COMPONENT) {
         print execute
 
     }
-    else if(APP_TYPE == "java" ) {
-        command =  "cp target/*.jar ${COMPONENT}.jar && zip -r ${FILENAME} ${COMPONENT}.jar"
-        def execute= sh(returnStdout: true, script: command)
+    else if(APP_TYPE == "JAVA") {
+        command = "cp target/*.jar ${COMPONENT}.jar && zip -r ${FILENAME} ${COMPONENT}.jar"
+        def execute=sh(returnStdout: true, script: command)
         print execute
     }
     else if (APP_TYPE == "GOLANG") {
