@@ -18,7 +18,7 @@ pipeline {
         stage('Find the Server') {
             steps {
                 addShortText background: 'blue', color: 'black', borderColor: 'white', text: "ENV = ${ENV}"
-                addShortText background: 'light green', color: 'black', borderColor: 'white', text: "COMPONENT = ${COMPONENT}"
+                addShortText background: 'cyan', color: 'black', borderColor: 'white', text: "COMPONENT = ${COMPONENT}"
                 addShortText background: 'yellow', color: 'black', borderColor: 'white', text: "VERSION = ${VERSION}"
                 sh '''
                     aws ec2 describe-instances --filters "Name=tag:Name,Values=${COMPONENT}-${ENV}" --region us-east-1 | jq .Reservations[].Instances[].PrivateIpAddress |xargs -n1 > inv
