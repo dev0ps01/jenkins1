@@ -28,8 +28,8 @@ for (i in 0..count) {
                     }
                     'branches' {
                         'hudson.plugins.git.BranchSpec' {
-                            'name'('*/tags/*')
-                            //'name'('*/main')
+                            //'name'('*/tags/*')
+                            'name'('*/main')
                         }
                     }
 
