@@ -17,7 +17,7 @@ pipeline {
 
         stage('Find the Server') {
             steps {
-                addShortText background: 'blue', color: 'black', borderColor: 'white', text: "ENV = ${ENV}"
+                addShortText background: 'sky blue', color: 'black', borderColor: 'white', text: "ENV = ${ENV}"
                 addShortText background: 'white', color: 'black', borderColor: 'white', text: "COMPONENT = ${COMPONENT}"
                 addShortText background: 'green', color: 'black', borderColor: 'white', text: "VERSION = ${VERSION}"
                 sh '''
