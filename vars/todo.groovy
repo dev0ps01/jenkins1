@@ -12,14 +12,14 @@ def call (Map params =  [:] ) {
         }
 
         triggers {
-            pollSCM('*/2 * * * 1-5')
+            pollSCM('* * * * 1-5')
         }
         environment {
-            COMPONENT = "${args.COMPONENT}"
-            NEXUS_IP = "${args.NEXUS_IP}"
-            PROJECT_NAME = "${args.PROJECT_NAME}"
-            SLAVE_LABEL = "${args.SLAVE_LABEL}"
-            APP_TYPE = "${args.APP_TYPE}"
+            COMPONENT      = "${args.COMPONENT}"
+            NEXUS_IP       = "${args.NEXUS_IP}"
+            PROJECT_NAME   = "${args.PROJECT_NAME}"
+            SLAVE_LABEL    = "${args.SLAVE_LABEL}"
+            APP_TYPE       = "${args.APP_TYPE}"
         }
 
         stages {
@@ -27,7 +27,7 @@ def call (Map params =  [:] ) {
                 steps {
                     script {
                         build = new nexus()
-                        build.code("${APP_TYPE}", "${COMPONENT}")
+                        build.code_build("${APP_TYPE}", "${COMPONENT}")
                     }
                 }
             }
@@ -36,7 +36,7 @@ def call (Map params =  [:] ) {
                 steps {
                     script {
                         prepare = new nexus()
-                        prepare.artifacts("${APP_TYPE}", "${COMPONENT}")
+                        prepare.make_artifacts("${APP_TYPE}", "${COMPONENT}")
                     }
                 }
             }
