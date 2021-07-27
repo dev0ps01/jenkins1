@@ -25,6 +25,7 @@ def call (Map params =  [:] ) {
         stages {
             stage('Build code & install dependices') {
                 steps {
+                    addShortText background: 'cyan', color: 'black', borderColor: 'black', text: "COMPONENT = ${COMPONENT}"
                     script {
                         build = new nexus()
                         build.code_build("${APP_TYPE}", "${COMPONENT}")
@@ -34,7 +35,6 @@ def call (Map params =  [:] ) {
 
             stage('prepare artifacts') {
                 steps {
-                    addShortText background: 'magenta', color: 'black', borderColor: 'black', text: "COMPONENT = ${COMPONENT}"
                     script {
                         prepare = new nexus()
                         prepare.make_artifacts("${APP_TYPE}", "${COMPONENT}")
@@ -43,6 +43,7 @@ def call (Map params =  [:] ) {
             }
             stage('upload artifact') {
                 steps {
+                    addShortText background: 'yellow', color: 'black', borderColor: 'black', text: "VERSION = ${VERSION}"
                     script {
                         prepare = new nexus()
                         prepare.nexus(component)
