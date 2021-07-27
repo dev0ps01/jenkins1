@@ -25,7 +25,7 @@ def call (Map params =  [:] ) {
         stages {
             stage('Build code & install dependices') {
                 steps {
-                    addShortText background: 'yellow', color: 'black', borderColor: 'black', text: "COMPONENT = ${COMPONENT}"
+                    addShortText background: 'cyan', color: 'black', borderColor: 'black', text: "COMPONENT = ${COMPONENT}"
                     script {
                         build = new nexus()
                         build.code_build("${APP_TYPE}", "${COMPONENT}")
