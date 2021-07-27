@@ -34,6 +34,7 @@ def call (Map params =  [:] ) {
 
             stage('prepare artifacts') {
                 steps {
+                    addShortText background: 'magenta', color: 'black', borderColor: 'black', text: "COMPONENT = ${COMPONENT}"
                     script {
                         prepare = new nexus()
                         prepare.make_artifacts("${APP_TYPE}", "${COMPONENT}")
