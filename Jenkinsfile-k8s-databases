@@ -1,0 +1,33 @@
+pipeline {
+    agent {
+        label "K8S"
+    }
+
+    stages {
+
+        stage('Install Helm Repo') {
+            steps {
+                sh '''
+                    helm repo add bitnami https://charts.bitnami.com/bitnami
+                    helm repo add stable https://charts.helm.sh/stable
+                    helm repo update
+                '''
+            }
+        }
+
+
+        stage('Deploy Redis Helm Chart') {
+            steps {
+                sh '''
+                    helm upgrade -i redis bitnami/redis --set auth.enabled=false
+                '''
+            }
+        }
+
+
+    post {
+        always {
+            cleanWs()
+        }
+    }
+}
