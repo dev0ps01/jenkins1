@@ -1,4 +1,4 @@
-pipeline {
+ pipeline {
     agent {
         label "K8S"
     }
@@ -25,9 +25,5 @@ pipeline {
         }
 
 
-    post {
-        always {
-            cleanWs()
-        }
     }
-}
+ }
