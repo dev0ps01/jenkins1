@@ -113,4 +113,67 @@ pipelineJob("kubernates/Frontend") {
     }
 }
 
+pipelineJob("kubernates/Users") {
+    configure { flowdefinition ->
+        flowdefinition << delegate.'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps') {
+            'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
+                'userRemoteConfigs' {
+                    'hudson.plugins.git.UserRemoteConfig' {
+                        'url'('https://github.com/dev0ps01/users.git')
+                    }
+                }
+                'branches' {
+                    'hudson.plugins.git.BranchSpec' {
+                        'name'('main')
+                    }
+                }
+            }
+            'scriptPath'('Jenkinsfile-k8s')
+            'lightweight'(true)
+        }
+    }
+}
+
+pipelineJob("kubernates/Login") {
+    configure { flowdefinition ->
+        flowdefinition << delegate.'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps') {
+            'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
+                'userRemoteConfigs' {
+                    'hudson.plugins.git.UserRemoteConfig' {
+                        'url'('https://github.com/dev0ps01/login.git')
+                    }
+                }
+                'branches' {
+                    'hudson.plugins.git.BranchSpec' {
+                        'name'('main')
+                    }
+                }
+            }
+            'scriptPath'('Jenkinsfile-k8s')
+            'lightweight'(true)
+        }
+    }
+}
+
+pipelineJob("kubernates/todo") {
+    configure { flowdefinition ->
+        flowdefinition << delegate.'definition'(class:'org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition',plugin:'workflow-cps') {
+            'scm'(class:'hudson.plugins.git.GitSCM',plugin:'git') {
+                'userRemoteConfigs' {
+                    'hudson.plugins.git.UserRemoteConfig' {
+                        'url'('https://github.com/dev0ps01/todo.git')
+                    }
+                }
+                'branches' {
+                    'hudson.plugins.git.BranchSpec' {
+                        'name'('main')
+                    }
+                }
+            }
+            'scriptPath'('Jenkinsfile-k8s')
+            'lightweight'(true)
+        }
+    }
+}
+
 
