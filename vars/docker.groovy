@@ -32,8 +32,8 @@ def call(Map params = [:]) {
                         env.get_branch_exec=sh(returnStdout: true, script: get_branch)
                     }
                     sh '''
-            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 734529938452.dkr.ecr.us-east-1.amazonaws.com
-            docker build -t 734529938452.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:${get_branch_exec} .
+            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 993252124154.dkr.ecr.us-east-1.amazonaws.com
+            docker build -t 993252124154.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:${get_branch_exec} .
           '''
                 }
             }
@@ -45,7 +45,7 @@ def call(Map params = [:]) {
                         env.get_branch_exec=sh(returnStdout: true, script: get_branch)
                     }
                     sh '''
-                       docker push 734529938452.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:${get_branch_exec}
+                       docker push 993252124154.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:${get_branch_exec}
                    '''
                 }
             }
