@@ -35,7 +35,7 @@ for (i in 0..count) {
 
 
                }
-                'scriptPath'('Jenkinsfile-Docker')
+                'scriptPath'('Jenkinsfile')
                 'lightweight'(true)
             }
         }
